@@ -66,7 +66,6 @@ class SparseMartrixCSR: public SparseMartrix{
             int non_zeros = 0; 
 
             for (int i=0; i<rows_n; ++i){
-                // aspetto di capire come aggiornare il row_idx
                 for (int j=0, j<cols_n; ++j){
                     if (input[i][j] != 0){
                         values.push_back(input[i][j]);
@@ -74,7 +73,7 @@ class SparseMartrixCSR: public SparseMartrix{
                         ++non_zeros;
                     }
                 }
-
+                row_idx.push_back(non_zeros);
             }
 
         }
