@@ -26,3 +26,13 @@ class SparseMartrix{
     // :( :(c
 
 };
+
+class SparseMartrixCOO: public SparseMartrix{
+
+}; 
+
+class SparseMartrixCSR: public SparseMartrix{
+
+}; 
+
+
