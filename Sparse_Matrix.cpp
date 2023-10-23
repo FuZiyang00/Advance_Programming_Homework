@@ -23,6 +23,7 @@ class SparseMartrix{
 
 };
 
+<<<<<<< HEAD
 class SparseMatrixCoo: public SparseMatrix{
     private:
     //const int col_n;
@@ -50,3 +51,14 @@ class SparseMatrixCsr: public SparseMatrix{
     int getcolumn_n() const override { return n_; }
         
 };
+=======
+class SparseMartrixCOO: public SparseMartrix{
+
+}; 
+
+class SparseMartrixCSR: public SparseMartrix{
+
+}; 
+
+
+>>>>>>> 378c9072cdcc4bba0a6abc275bba773628b357e1
