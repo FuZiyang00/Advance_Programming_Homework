@@ -6,12 +6,8 @@ using namespace std;
 class SparseMartrix{
     virtual ~SparseMatrix() = default;
     
-    const int n_col;
-	const int n_row;
-    vector<double> v;
-
-    virtual int getrow_n() const = 0;
-    virtual int getcolumn_n() const = 0;
+    int getrow_n() const ;
+    int getcolumn_n() const ;
     virtual int getnonzero_n() const = 0;
     virtual const double &operator()(int row, int col) const = 0;
     virtual double &operator()(const int &row, const int &col) const = 0;
@@ -25,4 +21,32 @@ class SparseMartrix{
     
     // :( :(c
 
+};
+
+class SparseMatrixCoo: public SparseMatrix{
+    private:
+    //const int col_n;
+    //const int row_n;
+    //vector<int>  col;
+	//vector<int>  row;
+    vector<vector<double>> mat;
+    public:
+
+    SparseMatrixCoo(vector<int>  col,vector<int>  row,vector<double>  v):col(col),row(row),v(v){}
+    int getrow_n() const override { return mat.size();}
+    int getcolumn_n() const override { return mat(0).size();}
+    int getnonzero_n() const override {return (row_n * col_n)-v.size();}
+    
+};
+
+
+class SparseMatrixCsr: public SparseMatrix{
+    private:
+    const int col;
+	const int n_row;
+    vector<double> v;
+    public:
+    int getrow_n() const override { return n_row; }
+    int getcolumn_n() const override { return n_; }
+        
 };
