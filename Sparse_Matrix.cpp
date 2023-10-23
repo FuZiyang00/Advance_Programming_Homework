@@ -1,6 +1,6 @@
 #include <cmath>
 #include <iostream>
-#include <vecctor>
+#include <vector>
 using namespace std;
 
 class SparseMartrix{
