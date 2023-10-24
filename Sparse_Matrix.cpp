@@ -9,7 +9,7 @@ class SparseMartrix{
     virtual int getcolumn_n() const = 0;
     virtual int getnonzero_n() const = 0;
     virtual const double &operator()(const int row, const int col) const = 0;
-    virtual double &operator()(const unsigned int &row, const unsigned int &col) const = 0;
+    virtual double &operator()(const unsigned int row, const unsigned int col) const = 0;
     virtual vector<double> &operator*(const vector<double>& vec) const = 0;
     virtual void print() const=0;
 
@@ -32,11 +32,10 @@ class SparseMatrixCoo: public SparseMatrix{
         int non_zeros = 0; 
 
         for (int i=0; i<rows_n; ++i){
-            rows.push_back(i);
             for (int j=0, j<cols_n; ++j){
                 if (input[i][j] != 0){
                     values.push_back(input[i][j]);
-                    colums.push_back(j);
+                    columns.push_back(j);
                     ++non_zeros;
                 }
             }
@@ -46,6 +45,8 @@ class SparseMatrixCoo: public SparseMatrix{
     int getrow_n() const override {return rows_n};
     int getcolumn_n() const override {return cols_n};
     int getnonzero_n() const override {return non_zeros};
+    double &operator()(const unsigned int &row, const unsigned int &col) const {
+    }
 
 };
 
