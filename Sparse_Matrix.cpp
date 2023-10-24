@@ -4,7 +4,6 @@
 using namespace std;
 
 class SparseMartrix{
-    virtual ~SparseMatrix() = default;
     virtual int getrow_n() const = 0;
     virtual int getcolumn_n() const = 0;
     virtual int getnonzero_n() const = 0;
@@ -12,6 +11,10 @@ class SparseMartrix{
     virtual double &operator()(const unsigned int row, const unsigned int col) const = 0;
     virtual vector<double> &operator*(const vector<double>& vec) const = 0;
     virtual void print() const=0;
+
+    virtual ~SparseMatrix() {
+        delete[] array; //Qua ci va tipo l'array in entrata che va distrutto perchè alloca memoria dinamicamente
+    }
 
 };
 
@@ -23,6 +26,7 @@ class SparseMatrixCoo: public SparseMatrix{
         std::vector<int> columns; // Column indices
         int rows_n;            // Number of rows
         int cols_n;            // Number of columns
+        int non_zeros;          //Number of number of non-zero elements
     
     public:
 
@@ -32,7 +36,7 @@ class SparseMatrixCoo: public SparseMatrix{
         int non_zeros = 0; 
 
         for (int i=0; i<rows_n; ++i){
-            for (int j=0, j<cols_n; ++j){
+            for (int j=0; j<cols_n; ++j){
                 if (input[i][j] != 0){
                     values.push_back(input[i][j]);
                     columns.push_back(j);
@@ -59,6 +63,7 @@ class SparseMartrixCSR: public SparseMartrix{
         std::vector<int> columns; // Column indices
         int rows_n;            // Number of rows
         int cols_n;            // Number of columns
+        int non_zeros;          //Number of number of non-zero elements
 
     public: 
         SparseMartrixCSR(const std::vector<std::vector<int>>& input) : inputMatrix(input) {
@@ -67,15 +72,14 @@ class SparseMartrixCSR: public SparseMartrix{
             int non_zeros = 0; 
 
             for (int i=0; i<rows_n; ++i){
-                // aspetto di capire come aggiornare il row_idx
-                for (int j=0, j<cols_n; ++j){
+                for (int j=0; j<cols_n; ++j){
                     if (input[i][j] != 0){
                         values.push_back(input[i][j]);
-                        colums.push_back(j);
+                        columns.push_back(j);
                         ++non_zeros;
                     }
                 }
-
+                row_idx.push_back(non_zeros);
             }
 
         }
