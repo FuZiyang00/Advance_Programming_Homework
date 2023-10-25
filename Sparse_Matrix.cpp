@@ -60,4 +60,20 @@ std::cout << "]" << std::endl; // End of the matrix
 }
 
 
+// no ha senso cosa returno??
+// std::tuple<std::vector<double>, std::vector<double>,std::vector<double>> to_COO(const SparseMatrixCSR csr){
+//     int nrow =csr.getrow_n();
+//     std::vector<double> rows_csr  = csr.row_idx(); //forse const
+//     std::vector<double> rows_coo;
+//     for (int i= 0; i < nrow-1; ++i ){
+//         non_zero_row_i = rows_csr[i+1]-rows_csr[i];
+//         while (non_zero_row_i>0){
+//             rows_coo.push_back(i);
+//             non_zero_row_i-=1;
+//         }
+//     }
+//     return {csr.values(), csr.columns(), rows_coo} 
+//     return SparseMatrixCOO(csr.rows_n(), csr.cols_n(), csr.values(), csr.columns(), rows_coo);
+
+// }
 

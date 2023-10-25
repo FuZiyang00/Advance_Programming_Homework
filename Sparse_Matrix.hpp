@@ -21,7 +21,11 @@ public:
     int getnonzero_n() const override;
     const double &operator()(const int row, const int col) const override;
     double &operator()(const int row, const int col) override;
+    std::vector<double> operator*(const std::vector<double>& vec);
     void print() const override;
+    //std::tuple<std::vector<double>, std::vector<double>, std::vector<double> > to_COO(const SparseMatrixCSR csr){
+     
+
 
 private:
     std::vector<std::vector<double>> inputMatrix; // input matrix
