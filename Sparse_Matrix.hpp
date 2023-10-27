@@ -9,18 +9,20 @@ public:
     virtual int getnonzero_n() const = 0;
     virtual const double &operator()(const int row, const int col) const = 0;
     virtual double &operator()(const int row, const int col) = 0;
+    virtual void operator*(const std::vector<double>& vec)const=0;
     virtual void print() const = 0;
     virtual ~SparseMatrix() {} // Virtual destructor
 };
 
 class SparseMatrixCSR : public SparseMatrix {
 public:
-    SparseMatrixCSR(const std::vector<std::vector<double>>& input);
+    SparseMatrixCSR(int rows_n, int cols_n);
     int getrow_n() const override;
     int getcolumn_n() const override;
     int getnonzero_n() const override;
     const double &operator()(const int row, const int col) const override;
     double &operator()(const int row, const int col) override;
+    void operator*(const std::vector<double>& vec) const override;
     void print() const override;
 
 private:
