@@ -61,18 +61,18 @@ std::cout << "]" << std::endl; // End of the matrix
 }
 
 // //ref:https://www.it.uu.se/education/phd_studies/phd_courses/pasc/lecture-1
-// std::vector<double> SparseMatrixCSR::operator*(const std::vector<double>& vec){
-//     if (vec.size() != cols_n) {
-//         throw std::out_of_range("Vector does not match"); // Out of bounds error raiser 
-//     }
-//     std::vector<double> result;
-//     for (int i=0; i; rows_n, ++i){
-//     for(int j=row_idx[i]; j<row_idx[i+1]; ++i){
-//         result[i] += values[j] * vec[columns[j]];
-//         }
-//     return result;
-//         }
-// }
+std::vector<double> SparseMatrixCSR::operator*(const std::vector<double>& vec)const{
+    if (vec.size() != cols_n) {
+        throw std::out_of_range("Vector does not match"); // Out of bounds error raiser 
+    }
+    std::vector<double> result;
+    for (int i=0; i; rows_n, ++i){
+        for(int j=row_idx[i]; j<row_idx[i+1]; ++i){
+             result[i] += values[j] * vec[columns[j]];
+        }}
+    return result;
+        
+}
 
 std::tuple<std::vector<double>, std::vector<int>,std::vector<int>> SparseMatrixCSR::to_COO()const{
     int nrow =rows_n;
