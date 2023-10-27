@@ -19,7 +19,7 @@ int main() {
     ptr->print();
     delete ptr;
 
-    std::vector<std::vector<double>> array1{{0, 0, 3, 5}, 
+    std::vector<std::vector<double>> array1{{1, 0, 3, 5}, 
                                            {9, 7.8, 0, 0},
                                            {10, 0, 0, 0}};
     auto csr2 = SparseMatrixCSR(array1);
