@@ -29,7 +29,7 @@ int main() {
             std::cout << element << ", ";
                 }
         std::cout << std::endl;
-    //std::tuple<std::vector<double>, std::vector<double>, std::vector<double>> ptr->to_COO();
+    //std::tuple< std::vector<double>, std::vector<int>, std::vector<int>> coo=csr.to_COO();
 
     return 0;
 }

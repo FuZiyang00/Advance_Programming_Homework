@@ -8,7 +8,7 @@ SparseMatrixCSR::SparseMatrixCSR(const std::vector<std::vector<double>>& input) 
     rows_n = input.size();
     cols_n = input[0].size();
     non_zeros = 0;
-
+    row_idx.push_back(0);
     for (int i = 0; i < rows_n; ++i) {
         for (int j = 0; j < cols_n; ++j) {
             if (input[i][j] != 0) {
@@ -76,7 +76,7 @@ std::vector<double> SparseMatrixCSR::operator*(const std::vector<double>& vec)co
         
 }
 
-std::tuple<std::vector<double>, std::vector<int>,std::vector<int>> SparseMatrixCSR::to_COO()const{
+std::tuple<std::vector<double>, std::vector<int>,std::vector<int>> SparseMatrixCSR::to_COO(){
     int nrow =rows_n;
     std::vector<int> rows_csr  = row_idx; //forse const
     std::vector<int> rows_coo;

@@ -25,7 +25,7 @@ public:
     std::vector<double> operator*(const std::vector<double>& vec) const override;
     void print() const override;
 
-    std::tuple<std::vector<double>, std::vector<int>, std::vector<int>> to_COO()const;
+    std::tuple<std::vector<double>, std::vector<int>, std::vector<int>> to_COO();
 
 
 
