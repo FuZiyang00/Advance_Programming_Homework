@@ -7,9 +7,7 @@ int main() {
     std::vector<std::vector<double>> array{{0, 2, 5, 5}, 
                                            {9, 7.8, 0, 0},
                                            {10, 0, 0, 0}};
-    std::vector<std::vector<double>> array1{{0, 0, 3, 5}, 
-                                           {9, 7.8, 0, 0},
-                                           {10, 0, 0, 0}};
+
     std::vector<double> v{1,0,0,0};
     SparseMatrix *ptr;
     ptr = new SparseMatrixCSR{array};
@@ -28,7 +26,7 @@ int main() {
     std::vector<double> vsota = csr2*v;
     std::cout << "Vector elements: ";
         for (const double& element : vsota) {
-            std::cout << element << " ";
+            std::cout << element << ", ";
                 }
         std::cout << std::endl;
     //std::tuple<std::vector<double>, std::vector<double>, std::vector<double>> ptr->to_COO();

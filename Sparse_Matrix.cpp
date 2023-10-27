@@ -65,11 +65,13 @@ std::vector<double> SparseMatrixCSR::operator*(const std::vector<double>& vec)co
     if (vec.size() != cols_n) {
         throw std::out_of_range("Vector does not match"); // Out of bounds error raiser 
     }
-    std::vector<double> result;
-    for (int i=0; i; rows_n, ++i){
-        for(int j=row_idx[i]; j<row_idx[i+1]; ++i){
+    std::vector<double> result(rows_n,0.0);
+    for (int i=0; i<rows_n; ++i){
+        for(int j=row_idx[i]; j<row_idx[i+1]; ++j){
              result[i] += values[j] * vec[columns[j]];
-        }}
+        }
+    }
+
     return result;
         
 }
