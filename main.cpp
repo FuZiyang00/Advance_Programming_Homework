@@ -20,12 +20,14 @@ int main() {
     ptr->print();
     delete ptr;
 
+
+std::cout << "*************************** "<<std::endl;
 ///matrix prova
     std::vector<std::vector<double>> array1{{1, 0, 3, 5}, 
                                            {9, 7.8, 0, 0},
                                            {10, 0, 0, 0}};
     auto csr2 = SparseMatrixCSR(array1);
-
+csr2.print();
 //multi prova
     std::vector<double> vsota = csr2*v;
     std::cout << "CSR*v: ";
@@ -37,25 +39,38 @@ int main() {
     std::tuple< std::vector<double>, std::vector<int>, std::vector<int>> coo=csr2.to_COO();
     std::cout << "convert to COO: ";
         std::cout << "values_COO: ";
+        int size= std::get<0>(coo).size();
         for (const double& element : std::get<0>(coo)) {
-            std::cout << element << ", ";
+            std::cout << element;
+            if (size != 1){
+                std::cout << ", ";
+                size -=1;
                 }
+            }    
         std::cout << std::endl;
 
         std::cout << "columns_COO: ";
+        int size_c= std::get<1>(coo).size();
         for (const int& element : std::get<1>(coo)) {
-            std::cout << element << ", ";
-                }
+            std::cout << element;
+            if (size_c != 1){
+                std::cout << ", ";
+                size_c -=1;
+            }
+        }
         std::cout << std::endl;
 
         std::cout << "rows_COO: ";
-        for (const double& element : std::get<2>(coo)) {
-            std::cout << element << ", ";
-                }
+        int size_r= std::get<2>(coo).size();
+        for (const int& element : std::get<2>(coo)) {
+            std::cout << element;
+            if (size_r != 1){
+                std::cout << ", ";
+                size_r -=1;
+            }
+        }
         std::cout << std::endl;
-        //std::cout <<std::get<0>(coo) << ", " std::cout << std::endl;
-        //std::cout <<std::get<1>(coo) << ", " std::cout << std::endl;
-        //std::cout <<std::get<2>(coo) << ", " std::cout << std::endl;
+        
         
     return 0;
     }

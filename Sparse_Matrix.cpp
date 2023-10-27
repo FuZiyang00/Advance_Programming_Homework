@@ -81,7 +81,7 @@ std::tuple<std::vector<double>, std::vector<int>,std::vector<int>> SparseMatrixC
     std::vector<int> rows_csr  = row_idx; //forse const
     std::vector<int> rows_coo;
     int non_zero_row_i;
-    for (int i= 0; i < nrow-1; ++i ){
+    for (int i= 0; i < nrow; ++i ){
         non_zero_row_i = rows_csr[i+1]-rows_csr[i];
         while (non_zero_row_i>0){
             rows_coo.push_back(i);
