@@ -1,6 +1,7 @@
 #ifndef SPARSEMATRIX_HPP
 #define SPARSEMATRIX_HPP
 #include <vector>
+#include <tuple>
 
 class SparseMatrix {
 public:

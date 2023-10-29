@@ -1,6 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <tuple>
 #include "Sparse_Matrix.hpp"
 
 int main() {
@@ -32,5 +33,5 @@ int main() {
     }
     delete ptr;
     return 0;
-}
+    }
 
