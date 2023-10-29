@@ -120,6 +120,38 @@ void SparseMatrixCSR::print() const {
         }
     }
     std::cout << "]" << std::endl; // End of the matrix
+
+    std::cout << "The matrix is stored in a CSR format:"<< std::endl;
+
+    std::cout << "Values:"; 
+    std::cout << "[ ";
+    for (int i = 0; i < values.size(); ++i) {
+        std::cout << values[i]; 
+        if (i < values.size() - 1) {
+            std::cout << ",";
+        }
+    }    
+    std::cout <<"]" << std::endl;
+
+    std::cout << "Columns:"; 
+    std::cout << "[ ";
+    for (int i = 0; i < values.size(); ++i) {
+        std::cout << columns[i]; 
+        if (i < values.size() - 1) {
+            std::cout << ",";
+        }
+    }    
+    std::cout <<"]" << std::endl;
+
+    std::cout << "Row_idx:"; 
+    std::cout << "[ ";
+    for (int i = 0; i < row_idx.size(); ++i) {
+        std::cout << row_idx[i]; 
+        if (i < values.size() - 1) {
+            std::cout << ",";
+        }
+    }    
+    std::cout <<"]" << std::endl;
 }
 
 std::vector<std::vector<double>> SparseMatrixCSR::FormatConverter() const{
