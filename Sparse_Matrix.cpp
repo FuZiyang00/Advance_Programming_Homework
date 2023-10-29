@@ -10,7 +10,6 @@ SparseMatrixCSR::SparseMatrixCSR(int rows_n, int cols_n) : rows_n(rows_n), cols_
     double zeroThreshold = 0.5; 
     // chatgpt: random seed to generate different random values each time the program runs
     std::srand(static_cast<double>(std::time(nullptr))); 
-
     inputMatrix = std::vector<std::vector<double>>(rows_n, std::vector<double>(cols_n));
 
         for (int i = 0; i < rows_n; i++) {
@@ -18,7 +17,7 @@ SparseMatrixCSR::SparseMatrixCSR(int rows_n, int cols_n) : rows_n(rows_n), cols_
             for (int j = 0; j < cols_n; j++) {
                 double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
                 if (randomValue > zeroThreshold) {
-                    // Generate a non-zero random double value
+                    // Generate a non-zero random double value if we meet the threshold
                     inputMatrix[i][j] = std::rand() % 100;
                     values.push_back(inputMatrix[i][j]);
                     columns.push_back(j);
