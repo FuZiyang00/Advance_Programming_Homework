@@ -62,7 +62,8 @@ double &SparseMatrixCSR::operator()(const int row, const int col) {
                 return values[i];
             }
         }
-
+    // ToDo: if I return the defaul the value, the override will happen on the value but 
+    // not on that value in matrix
     static double default_value = 0.0;
     return default_value;
 }
