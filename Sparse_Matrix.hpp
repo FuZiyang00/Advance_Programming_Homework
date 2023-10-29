@@ -11,6 +11,7 @@ public:
     virtual double &operator()(const int row, const int col) = 0;
     virtual void operator*(const std::vector<double>& vec)const=0;
     virtual void print() const = 0;
+    virtual std::vector<std::vector<double>> FormatConverter() const = 0;
     virtual ~SparseMatrix() {} // Virtual destructor
 };
 
@@ -24,6 +25,7 @@ public:
     double &operator()(const int row, const int col) override;
     void operator*(const std::vector<double>& vec) const override;
     void print() const override;
+    std::vector<std::vector<double>> FormatConverter() const override;
 
 private:
     std::vector<std::vector<double>> inputMatrix; // input matrix
