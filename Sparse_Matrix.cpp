@@ -13,9 +13,9 @@ SparseMatrixCSR::SparseMatrixCSR(int rows_n, int cols_n) : rows_n(rows_n), cols_
 
     inputMatrix = std::vector<std::vector<double>>(rows_n, std::vector<double>(cols_n));
 
-        for (int i = 0; i < rows_n; i++) {
+        for (int i = 0; i < rows_n; ++i) {
             row_idx.push_back(non_zeros);
-            for (int j = 0; j < cols_n; j++) {
+            for (int j = 0; j < cols_n; ++j) {
                 double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
                 if (randomValue > zeroThreshold) {
                     // Generate a non-zero random double value
@@ -147,7 +147,7 @@ void SparseMatrixCSR::print() const {
     std::cout << "[ ";
     for (int i = 0; i < row_idx.size(); ++i) {
         std::cout << row_idx[i]; 
-        if (i < values.size() - 1) {
+        if (i < row_idx.size() - 1) {
             std::cout << ",";
         }
     }    
