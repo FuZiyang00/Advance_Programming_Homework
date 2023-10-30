@@ -12,9 +12,9 @@ SparseMatrixCSR::SparseMatrixCSR(int rows_n, int cols_n) : rows_n(rows_n), cols_
     std::srand(static_cast<double>(std::time(nullptr))); 
     inputMatrix = std::vector<std::vector<double>>(rows_n, std::vector<double>(cols_n));
 
-        for (int i = 0; i < rows_n; i++) {
+        for (int i = 0; i < rows_n; ++i) {
             row_idx.push_back(non_zeros);
-            for (int j = 0; j < cols_n; j++) {
+            for (int j = 0; j < cols_n; ++j) {
                 double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
                 if (randomValue > zeroThreshold) {
                     // Generate a non-zero random double value if we meet the threshold
@@ -64,9 +64,19 @@ double &SparseMatrixCSR::operator()(const int row, const int col) {
                 insertPosition = i;
                 break;
             }
+            else {
+                insertPosition = i;
+                break;
+            }
         }
     // ToDo: if I return the defaul the value, the override will happen on the value but 
     // not on that value in matrix
+    for (int i = row + 1; i <= rows_n; i++) {
+        row_idx[i]++;
+    }
+    columns.insert(columns.begin() + insertPosition, col);
+    values.insert(values.begin() + insertPosition, 0.0);
+    return values[insertPosition];
     for (int i = row + 1; i <= rows_n; i++) {
         row_idx[i]++;
     }
@@ -156,7 +166,7 @@ void SparseMatrixCSR::print() const {
     std::cout << "[ ";
     for (int i = 0; i < row_size; ++i) {
         std::cout << row_idx[i]; 
-        if (i < row_size - 1) {
+        if (i < row_idx.size() - 1) {
             std::cout << ",";
         }
     }    
