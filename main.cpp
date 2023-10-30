@@ -5,32 +5,23 @@
 #include "Sparse_Matrix.hpp"
 
 int main() {
+
     int rows_n, cols_n;
-    std::cout<< "Select number of rows: "<< std::endl;
-    std::cin>>rows_n;
-    std::cout<< "Select number of cloumns: "<< std::endl;
-    std::cin>>cols_n;
-    
+    rows_n = 5;
+    cols_n = 5;
     SparseMatrixCSR* ptr = new SparseMatrixCSR(rows_n, cols_n);
 
     // tests
     std::cout<< "You generated a random sparse matrix: "<< std::endl;
+    ptr->print();
     std::cout<< "Informations of the matrix: "<< std::endl;
     std::cout<< "number of rows: "<< ptr->getrow_n()<< std::endl;
     std::cout<< "number of columns: "<< ptr->getcolumn_n()<< std::endl;
     std::cout<< "number of non_zero elements: "<< ptr->getnonzero_n()<< std::endl;
-    std::cout<< "Choose an element of the matrix i j: ";
-    int i,j;
-    std::cin>>i >> j;
-    const double read_element = (*ptr)(i,j); // must dereference the ptr before calling the operators
+    const double read_element = (*ptr)(2,2); // must dereference the ptr before calling the operators
     std::cout << "Your element is " << read_element << std::endl;
-    std::cout << "Change element to (select number):";
-    int number;
-    std::cin>>number;
-    (*ptr)(i, j) = number;
-    
-    std::cout << "The element was written to: " << (*ptr) (1, 1) << std::endl;
-    ptr->print();
+    (*ptr)(2, 2) = 8;
+    std::cout << "The element has been written to: " << (*ptr) (2, 2) << std::endl;
     ptr->print();
     
     // matrix-vector product tests 
@@ -46,7 +37,6 @@ int main() {
     std::cout << "For vector=ei: ";
     (*ptr) * v1;
   
-    
     // converter utility testing 
     std::vector<std::vector<double>> converter = ptr->FormatConverter();
     int iterator = converter[0].size();
