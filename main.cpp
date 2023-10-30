@@ -7,8 +7,10 @@
 int main() {
 
     int rows_n, cols_n;
-    rows_n = 5;
-    cols_n = 5;
+    std::cout<< "Select number of rows: "<< std::endl;
+    std::cin>>rows_n;
+    std::cout<< "Select number of cloumns: "<< std::endl;
+    std::cin>>cols_n;
     SparseMatrixCSR* ptr = new SparseMatrixCSR(rows_n, cols_n);
 
     // tests
