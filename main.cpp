@@ -58,6 +58,6 @@ int main() {
                   << " Column: " << converter[2][i] << std::endl;
     }
     delete ptr;
-    return 0;s
+    return 0;
     }
 

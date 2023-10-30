@@ -56,15 +56,24 @@ double &SparseMatrixCSR::operator()(const int row, const int col) {
     if (row < 0 || row >= rows_n || col < 0 || col >= cols_n) {
         throw std::out_of_range("Indices are out of bound"); // Out of bounds error raiser 
     }
+    int insertPosition = -1;
     for (int i = row_idx[row]; i < row_idx[row + 1]; i++) {
             if (columns[i] == col) {
                 return values[i];
             }
+            else {
+                insertPosition = i;
+                break;
+            }
         }
     // ToDo: if I return the defaul the value, the override will happen on the value but 
     // not on that value in matrix
-    static double default_value = 0.0;
-    return default_value;
+    for (int i = row + 1; i <= rows_n; i++) {
+        row_idx[i]++;
+    }
+    columns.insert(columns.begin() + insertPosition, col);
+    values.insert(values.begin() + insertPosition, 0.0);
+    return values[insertPosition];
 }
 
 // multiplication override 
