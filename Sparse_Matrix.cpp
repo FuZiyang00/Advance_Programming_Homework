@@ -50,21 +50,29 @@ const double &SparseMatrixCSR::operator() (const int row, const int col) const {
         return default_value;
 }
 
-
 //write operator override 
 double &SparseMatrixCSR::operator()(const int row, const int col) { 
     if (row < 0 || row >= rows_n || col < 0 || col >= cols_n) {
         throw std::out_of_range("Indices are out of bound"); // Out of bounds error raiser 
     }
+    int insertPosition = -1;
     for (int i = row_idx[row]; i < row_idx[row + 1]; i++) {
             if (columns[i] == col) {
                 return values[i];
             }
+            else {
+                insertPosition = i;
+                break;
+            }
         }
     // ToDo: if I return the defaul the value, the override will happen on the value but 
     // not on that value in matrix
-    static double default_value = 0.0;
-    return default_value;
+    for (int i = row + 1; i <= rows_n; i++) {
+        row_idx[i]++;
+    }
+    columns.insert(columns.begin() + insertPosition, col);
+    values.insert(values.begin() + insertPosition, 0.0);
+    return values[insertPosition];
 }
 
 // multiplication override 
@@ -124,9 +132,10 @@ void SparseMatrixCSR::print() const {
 
     std::cout << "Values:"; 
     std::cout << "[ ";
-    for (int i = 0; i < values.size(); ++i) {
+    int value_size = values.size();
+    for (int i = 0; i < value_size; ++i) {
         std::cout << values[i]; 
-        if (i < values.size() - 1) {
+        if (i < value_size - 1) {
             std::cout << ",";
         }
     }    
@@ -134,24 +143,26 @@ void SparseMatrixCSR::print() const {
 
     std::cout << "Columns:"; 
     std::cout << "[ ";
-    for (int i = 0; i < values.size(); ++i) {
+    for (int i = 0; i < value_size; ++i) {
         std::cout << columns[i]; 
-        if (i < values.size() - 1) {
+        if (i < value_size - 1) {
             std::cout << ",";
         }
     }    
     std::cout <<"]" << std::endl;
 
+    int row_size = row_idx.size();
     std::cout << "Row_idx:"; 
     std::cout << "[ ";
-    for (int i = 0; i < row_idx.size(); ++i) {
+    for (int i = 0; i < row_size; ++i) {
         std::cout << row_idx[i]; 
-        if (i < values.size() - 1) {
+        if (i < row_size - 1) {
             std::cout << ",";
         }
     }    
     std::cout <<"]" << std::endl;
 }
+
 
 std::vector<std::vector<double>> SparseMatrixCSR::FormatConverter() const{
 
