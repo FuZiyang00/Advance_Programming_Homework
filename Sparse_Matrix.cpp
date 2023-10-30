@@ -10,7 +10,7 @@ SparseMatrixCSR::SparseMatrixCSR(int rows_n, int cols_n) : rows_n(rows_n), cols_
     double zeroThreshold = 0.5;
     // chatgpt: random seed to generate different random values each time the program runs
     std::srand(static_cast<unsigned>(std::time(nullptr))); // Use 'unsigned' for better compatibility
-    inputMatrix = std::vector<std::vector<double>>(rows_n, std::vector<double>(cols_n));
+    //inputMatrix = std::vector<std::vector<double>>(rows_n, std::vector<double>(cols_n));
 
     row_idx.push_back(non_zeros); // Initialize row_idx with 0 for the first row
 
@@ -19,12 +19,12 @@ SparseMatrixCSR::SparseMatrixCSR(int rows_n, int cols_n) : rows_n(rows_n), cols_
             double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
             if (randomValue > zeroThreshold) {
                 // Generate a non-zero random double value if we meet the threshold
-                inputMatrix[i][j] = 1 + (std::rand() % 100);
-                values.push_back(inputMatrix[i][j]);
+                //inputMatrix[i][j] = 1 + (std::rand() % 100);
+                values.push_back(1 + (std::rand() % 100));
                 columns.push_back(j);
                 ++non_zeros;
             } else {
-                inputMatrix[i][j] = 0.0;
+                //inputMatrix[i][j] = 0.0;
             }
         }
         row_idx.push_back(non_zeros); // Update row_idx for the current row
