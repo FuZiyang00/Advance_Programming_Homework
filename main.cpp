@@ -6,13 +6,14 @@
 
 int main() {
 
+    std::cout<<"Let's first test the COO Sparse Matrix"<<std::endl;
     int rows_n, cols_n;
     std::cout<< "Select number of rows: "<< std::endl;
     std::cin>>rows_n;
     std::cout<< "Select number of cloumns: "<< std::endl;
     std::cin>>cols_n;
     
-    std::cout<<"Let's test before the COO Sparse Matrix"<<std::endl;
+    
     SparseMatrixCOO* aaa = new SparseMatrixCOO(rows_n,cols_n);
 
     //Preliminary test of COO features:
@@ -71,6 +72,10 @@ int main() {
     // SPARSE MATRIX WITH CSR
 
     std::cout<<"Let's test now with CSR Sparse Matrix"<<std::endl;
+    std::cout<< "Select number of rows: "<< std::endl;
+    std::cin>>rows_n;
+    std::cout<< "Select number of cloumns: "<< std::endl;
+    std::cin>>cols_n;
     SparseMatrixCSR* ptr = new SparseMatrixCSR(rows_n, cols_n);
 
     //Preliminary test of CSR features:
@@ -87,7 +92,7 @@ int main() {
     std::cout << "Change element to (select number):";
     std::cin>>number;
     (*ptr)(i, j) = number;
-    std::cout << "The element was written to: " << (*ptr) (1, 1) << std::endl;
+    std::cout << "The element was written to: " << (*ptr) (i,j) << std::endl;
     ptr->print();
 
     // matrix-vector product tests for CSR
