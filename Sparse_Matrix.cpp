@@ -198,20 +198,16 @@ SparseMatrixCOO::SparseMatrixCOO(int rows_n, int cols_n) : rows_n(rows_n), cols_
     double zeroThreshold = 0.5; 
     // chatgpt: random seed to generate different random values each time the program runs
     std::srand(static_cast<double>(std::time(nullptr))); 
-    inputMatrix = std::vector<std::vector<double>>(rows_n, std::vector<double>(cols_n));
 
         for (int i = 0; i < rows_n; ++i) {
             for (int j = 0; j < cols_n; ++j) {
                 double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
                 if (randomValue > zeroThreshold) {
                     // Generate a non-zero random double value if we meet the threshold
-                    inputMatrix[i][j] = std::rand() % 100;
-                    values.push_back(inputMatrix[i][j]);
+                    values.push_back(std::rand() % 100);
                     columns.push_back(j);
                     rows.push_back(i);
                     ++non_zeros;
-                } else {
-                    inputMatrix[i][j] = 0.0;
                 }
             }
         }
@@ -285,20 +281,22 @@ void SparseMatrixCOO::operator*(const std::vector<double>& vec)const{
 
 // Matrix printer 
 void SparseMatrixCOO::print() const {
-// Start of the matrix
-     int current_val = 0;
     for (int i = 0; i < rows_n; ++i) {
         for (int j = 0; j < cols_n; ++j) {
-            if (current_val < rows.size() && rows[current_val] == i && columns[current_val] == j) {
-                std::cout << values[current_val] << " ";
-                current_val++;
-            } else {
+            bool isChanged = false; //A check if we change a value to print correctly
+            for (int k = 0; k < non_zeros; ++k) {
+                if (rows[k] == i && columns[k] == j) {
+                    std::cout << values[k] << " ";
+                    isChanged = true;
+                    break;
+                }
+            }
+            if (!isChanged) {
                 std::cout << "0 ";
             }
         }
         std::cout << std::endl;
     }
-// End of the matrix
 
     std::cout << "The matrix is stored in a COO format:"<< std::endl;
 
