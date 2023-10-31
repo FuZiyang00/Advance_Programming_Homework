@@ -5,8 +5,8 @@
 #include "Sparse_Matrix.hpp"
 
 int main() {
-    int rows_n, cols_n;
 
+    int rows_n, cols_n;
     std::cout<< "Select number of rows: "<< std::endl;
     std::cin>>rows_n;
     std::cout<< "Select number of cloumns: "<< std::endl;
