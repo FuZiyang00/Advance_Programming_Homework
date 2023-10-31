@@ -3,3 +3,4 @@ sparse_matrix.exe
 .vscode/settings.json
 .vscode/tasks.json
 main.exe
+sparse_matrix
