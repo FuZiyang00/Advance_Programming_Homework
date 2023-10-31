@@ -5,7 +5,7 @@
 
 class SparseMatrix {
 public:
-    virtual int getrow_n() const = 0;
+    virtual int getrow_n() const = 0; 
     virtual int getcolumn_n() const = 0;
     virtual int getnonzero_n() const = 0;
     virtual const double &operator()(const int row, const int col) const = 0;
@@ -29,7 +29,6 @@ public:
     std::vector<std::vector<double>> FormatConverter() const override;
 
 private:
-    std::vector<std::vector<double>> inputMatrix; // input matrix
     std::vector<double> values;    // Non-zero elements
     std::vector<int> row_idx; // Row pointers
     std::vector<int> columns; // Column indices
@@ -51,7 +50,6 @@ public:
     std::vector<std::vector<double>> FormatConverter() const override;
 
 private:
-    std::vector<std::vector<double>> inputMatrix; // input matrix
     std::vector<double> values;    // Non-zero elements
     std::vector<int> rows; // Rows indices
     std::vector<int> columns; // Column indices
