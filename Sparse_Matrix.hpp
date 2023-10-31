@@ -38,4 +38,26 @@ private:
     int non_zeros;         // Number of non-zero elements
 };
 
+class SparseMatrixCOO : public SparseMatrix {
+public:
+    SparseMatrixCOO(int rows_n, int cols_n);
+    int getrow_n() const override;
+    int getcolumn_n() const override;
+    int getnonzero_n() const override;
+    const double &operator()(const int row, const int col) const override;
+    double &operator()(const int row, const int col) override;
+    void operator*(const std::vector<double>& vec) const override;
+    void print() const override;
+    std::vector<std::vector<double>> FormatConverter() const override;
+
+private:
+    std::vector<std::vector<double>> inputMatrix; // input matrix
+    std::vector<double> values;    // Non-zero elements
+    std::vector<int> rows; // Rows indices
+    std::vector<int> columns; // Column indices
+    int rows_n;            // Number of rows
+    int cols_n;            // Number of columns
+    int non_zeros;         // Number of non-zero elements
+};
+
 #endif
