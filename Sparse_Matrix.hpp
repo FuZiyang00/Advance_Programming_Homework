@@ -29,7 +29,6 @@ public:
     std::vector<std::vector<double>> FormatConverter() const override;
 
 private:
-    std::vector<std::vector<double>> inputMatrix; // input matrix
     std::vector<double> values;    // Non-zero elements
     std::vector<int> row_idx; // Row pointers
     std::vector<int> columns; // Column indices

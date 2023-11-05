@@ -13,7 +13,6 @@ int main() {
     std::cout<< "Select number of cloumns: "<< std::endl;
     std::cin>>cols_n;
     
-    
     SparseMatrixCOO* aaa = new SparseMatrixCOO(rows_n,cols_n);
 
     //Preliminary test of COO features:
